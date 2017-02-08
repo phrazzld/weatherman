@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Weather Man</title>
+    <meta name="description" content="Tells you the weather at your location">
+    <meta name="author" content="phaedrus">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div id="temp-buttons" class="btn-group" role="group" aria-label="temp-units">
+            <button id="f-button" type="button" class="btn btn-default active">F</button>
+            <button id="c-button" type="button" class="btn btn-default">C</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h4 id="location"></h4>
+          <p><strong>Latitude: </strong><span id="latitude"></span></p>
+          <p><strong>Longitude: </strong><span id="longitude"></span></p>
+          <p><strong>Weather: </strong><span id="weather-main"></span></p>
+          <p><strong>Temperature: </strong><span id="weather-temp"></span></p>
+          <p><strong>Humidity: </strong><span id="humidity"></span></p>
+          <p><strong>Cloudiness: </strong><span id="weather-clouds"></span></p>
+          <p><strong>Wind Speed: </strong><span id="weather-wind-speed"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <footer id="site-info" class="col-xs-8 col-xs-offset-2">
+      <hr>
+      <p>This is a
+      <a href="http://www.freecodecamp.com" target="_blank">Free Code Camp</a>
+      project.
+      </p>
+      <p>Copyright &copy; 2017
+      <a href="http://www.raznikov.com" target="_blank">Phaedrus Raznikov</a>
+      </p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
