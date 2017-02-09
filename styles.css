@@ -11,6 +11,10 @@ body {
   margin-bottom: 60px;
 }
 
+.right-side {
+  float: right;
+}
+
 #site-info {
   position: absolute;
   bottom: 0;
@@ -23,6 +27,24 @@ footer p {
   margin: 0;
 }
 
-#temp-buttons {
-  float: right;
+#temp-buttons-wrapper {
+  padding-left: 0;
+}
+
+#weather-image-wrapper {
+  margin-top: 10px;
+}
+
+#weather-image {
+  max-height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#weather-main-wrapper {
+  font-weight: 200;
+}
+
+#weather-temp {
+  margin-right: 15px;
 }

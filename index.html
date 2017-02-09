@@ -15,22 +15,28 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <div id="temp-buttons" class="btn-group" role="group" aria-label="temp-units">
-            <button id="f-button" type="button" class="btn btn-default active">F</button>
-            <button id="c-button" type="button" class="btn btn-default">C</button>
+          <div class="col-xs-9">
+            <h4 id="location"></h4>
+          </div>
+          <div id="temp-buttons-wrapper" class="col-xs-3">
+            <div class="right-side btn-group" role="group" aria-label="temp-units">
+              <button id="f-button" type="button" class="btn btn-default">F</button>
+              <button id="c-button" type="button" class="btn btn-default">C</button>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
+        <div class="col-md-6 col-md-offset-3" id="weather-image-wrapper"></div>
+      </div>
+
+      <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h4 id="location"></h4>
-          <p><strong>Latitude: </strong><span id="latitude"></span></p>
-          <p><strong>Longitude: </strong><span id="longitude"></span></p>
-          <p><strong>Weather: </strong><span id="weather-main"></span></p>
-          <p><strong>Temperature: </strong><span id="weather-temp"></span></p>
-          <p><strong>Humidity: </strong><span id="humidity"></span></p>
-          <p><strong>Cloudiness: </strong><span id="weather-clouds"></span></p>
-          <p><strong>Wind Speed: </strong><span id="weather-wind-speed"></span></p>
+          <h4 id="weather-main-wrapper">
+            <span id="weather-temp"></span> 
+            <span id="weather-main"></span> 
+            <span id="lat-and-lon" class="right-side"></span>
+          </h4>
         </div>
       </div>
     </div>

@@ -1,34 +1,66 @@
+function setWeatherImage(weather) {
+  var imageHTML = "<img class='img-responsive' id='weather-image' src='";
+  var clearImagePath = "images/clearskies.jpg";
+  var cloudyImagePath = "images/cloudyskies.jpg";
+  var mistImagePath = "images/mist.jpg";
+  var snowImagePath = "images/snow.jpg";
+  var rainImagePath = "images/rain.jpg";
+  var stormImagePath = "images/storm.jpg";
+  var nonsenseImagePath = "images/kittens.jpg";
+  var caboose = "'>";
+
+  switch (weather) {
+    case "Clear":
+      imageHTML += clearImagePath;
+      break;
+    case "Clouds":
+      imageHTML += cloudyImagePath;
+      break;
+    case "Mist":
+      imageHTML += mistImagePath;
+      break;
+    case "Snow":
+      imageHTML += snowImagePath;
+      break;
+    case "Rain":
+      imageHTML += rainImagePath;
+      break;
+    case "Storm":
+      imageHTML += stormImagePath;
+      break;
+    default:
+      imageHTML += nonsenseImagePath;
+  }
+
+  imageHTML += caboose;
+  $("#weather-image-wrapper").html(imageHTML);
+}
+
+
 $(document).ready(function() {
   // Set temp-button behavior
-  var activetemp = "f";
   var fahrenheit = $("#f-button");
   var celsius = $("#c-button");
+  var tempK, tempF, tempC, loc, lat, lon, city, country, weather;
+ 
+  celsius.addClass("active");
   fahrenheit.click(function() {
-    if(fahrenheit.hasClass("active")) {
-      fahrenheit.removeClass("active");
-      celsius.addClass("active");
-      activetemp = "c";
-    } else {
+    if(!fahrenheit.hasClass("active")) {
       fahrenheit.addClass("active");
       celsius.removeClass("active");
       activetemp = "f";
+      $("#weather-temp").html(tempF + "&deg; F");
     }
   });
   celsius.click(function() {
-    if(celsius.hasClass("active")) {
-      celsius.removeClass("active");
-      fahrenheit.addClass("active");
-      activetemp = "f";
-    } else {
+    if(!celsius.hasClass("active")) {
       celsius.addClass("active");
       fahrenheit.removeClass("active");
       activetemp = "c";
+      $("#weather-temp").html(tempC + "&deg; C");
     }
   });
 
-  var tempK, tempF, tempC, tempString;
-  var loc, lat, lon, city, country;
-  var weathermain, humidity, cloudiness, windspeed;
   // Get IP data
   $.get("http://ipinfo.io", function(response) {
     loc = response.loc.split(",");
@@ -39,27 +71,16 @@ $(document).ready(function() {
     $.get("http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=" + KEY, function(response) {
       city = response.name;
       country = response.sys.country;
-      weathermain = response.weather[0].main;
-      humidity = response.main.humidity;
-      cloudiness = response.clouds.all;
-      windspeed = response.wind.speed;
+      weather = response.weather[0].main;
       tempK = response.main.temp;
-      tempF = tempK * 9/5 - 459.67;
-      tempC = tempK - 273.15;
-      if (activetemp == "f") {
-        tempString = tempF.toFixed(2) + "&deg;" + " F";
-      } else {
-        tempString = tempC.toFixed(2) + "&deg;" + " C";
-      }
+      tempF = (tempK * 9/5 - 459.67).toFixed(2);
+      tempC = (tempK - 273.15).toFixed(2);
 
-      $("#latitude").html(lat);
-      $("#longitude").html(lon);
+      setWeatherImage(weather);
+      $("#lat-and-lon").html("@ (" + lat + ", " + lon + ")");
       $("#location").html(city + ", " + country);
-      $("#weather-main").html(weathermain);
-      $("#weather-temp").html(tempString);
-      $("#weather-humidity").html(humidity);
-      $("#weather-clouds").html(cloudiness);
-      $("#weather-wind-speed").html(windspeed);
+      $("#weather-main").html(weather);
+      $("#weather-temp").html(tempC + "&deg; C");
     });
   }, "jsonp");
 
